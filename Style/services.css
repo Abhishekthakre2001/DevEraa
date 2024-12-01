@@ -232,6 +232,9 @@
     text-align: center; /* Centers text inside the column */
     margin-bottom: 20px; /* Adds spacing between the columns */
   }
+  .deveraa-hero{
+    margin: 100px 0px;
+  }
 }
 
 
@@ -389,5 +392,22 @@ button.contact_form_submit {
 @media (max-width: 1197px) {
   .btn-getstarted {
     display: none;
+  }
+}
+
+
+/* deveraa-tech-icon */
+.deveraa-tech-icon{
+  font-size: 40px;
+    padding: 5px;
+    color: #2563eb;
+}
+
+
+/* hero section */
+/* Center align for screens below 767px */
+@media (max-width: 929px) {
+  .deveraa-hero{
+    margin: 100px 0px;
   }
 }
