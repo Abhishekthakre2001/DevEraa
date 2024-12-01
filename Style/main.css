@@ -197,11 +197,15 @@
     .header .logo {
       order: 1;
     }
+    .btn-getstarted{
+      color: white;
+    }
   
     .header .btn-getstarted {
       order: 2;
       margin: 0 15px 0 0;
       padding: 6px 15px;
+      margin: 0px 20px;
     }
   
     .header .navmenu {
