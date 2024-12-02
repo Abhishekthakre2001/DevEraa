@@ -22,10 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           // Start counters when section is visible
-          counter("count1", 0, 12, 1000);
-          counter("count2", 0, 500, 1000);
-          counter("count3", 0, 500, 1000);
-          counter("count4", 10, 56, 1000);
+          counter("count1", 0, 5, 1000);
+          counter("count2", 0, 25, 1000);
+          counter("count3", 0, 25, 1000);
+          // counter("count4", 10, 56, 1000);
           // Unobserve after triggering
           observerInstance.unobserve(counterSection);
         }
