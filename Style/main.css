@@ -452,7 +452,7 @@
     .navmenu a:hover,
     .navmenu .active,
     .navmenu .active:focus {
-      color: var(--nav-dropdown-hover-color);
+      color: #0560f1;
     }
   
     .navmenu .active i,
