@@ -1,5 +1,8 @@
 document.getElementById('contactForm').addEventListener('submit', function (e) {
 
+    document.getElementById('submit_button').style.display="none";
+    document.getElementById('loading_button').style.display="block";
+
     console.log("cobatct ")
     e.preventDefault();
   
@@ -13,8 +16,8 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
       mailto: "pundenishant@gmail.com",
       subject: `New Contact Form Submission from ${name}`,
       body: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
-      username: "abhishekthakare060@gmail.com",
-      password: "qpzechapbqbvwwvd",
+      username: "info@deveraa.com",
+      password: "itrjgsxdexwwkwhr",
       senderName: name,
     };
   
@@ -34,7 +37,8 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
             title: 'Thank you for contacting us!',
             text: 'We will get back to you soon.',
           });
-  
+          document.getElementById('submit_button').style.display="block";
+          document.getElementById('loading_button').style.display="none";
           // Optionally reset the form fields
           document.getElementById('contactForm').reset();
         } else {
@@ -49,6 +53,8 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
           title: 'Oops!',
           text: 'Something went wrong. Please try again later.',
         });
+        document.getElementById('submit_button').style.display="block";
+        document.getElementById('loading_button').style.display="none";
       });
   });
   
