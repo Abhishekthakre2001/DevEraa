@@ -1,0 +1,54 @@
+document.getElementById('contactForm').addEventListener('submit', function (e) {
+
+    console.log("cobatct ")
+    e.preventDefault();
+  
+    // Get form values
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+  
+    // Prepare the API request payload
+    const requestBody = {
+      mailto: "pundenishant@gmail.com",
+      subject: `New Contact Form Submission from ${name}`,
+      body: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
+      username: "abhishekthakare060@gmail.com",
+      password: "qpzechapbqbvwwvd",
+      senderName: name,
+    };
+  
+    // Send the POST request to the API
+    fetch('http://mail.learnwithdevelopers.me/mail', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestBody)
+    })
+      .then(response => {
+        if (response.ok) {
+          // Show success alert using SweetAlert
+          Swal.fire({
+            icon: 'success',
+            title: 'Thank you for contacting us!',
+            text: 'We will get back to you soon.',
+          });
+  
+          // Optionally reset the form fields
+          document.getElementById('contactForm').reset();
+        } else {
+          // Handle error
+          throw new Error('Email sending failed');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops!',
+          text: 'Something went wrong. Please try again later.',
+        });
+      });
+  });
+  

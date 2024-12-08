@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
           counter("count1", 0, 5, 1000);
           counter("count2", 0, 25, 1000);
           counter("count3", 0, 25, 1000);
-          // counter("count4", 10, 56, 1000);
+          counter("count4", 10, 5, 1000);
           // Unobserve after triggering
           observerInstance.unobserve(counterSection);
         }
