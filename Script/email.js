@@ -22,7 +22,7 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
     };
   
     // Send the POST request to the API
-    fetch('http://mail.learnwithdevelopers.me/mail', {
+    fetch('https://mail.learnwithdevelopers.me/mail', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
