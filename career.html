@@ -72,29 +72,29 @@
 
     <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl position-relative d-flex align-items-center"
-          style="justify-content: space-between;">
-          <a href="index.html" class="logo d-flex align-items-center">
-            <img src="/assets/logo.jpg" alt="Deveraa" />
-          </a>
-    
-          <nav id="navmenu" class="navmenu">
-            <ul>
-              <li><a href="index.html#hero" class="active"><span>Home</span></a></li>
-              <li><a href="index.html#about"><span>Company</span></a></li>
-              <li><a href="index.html#Services"><span>Service</span></a></li>
-              <!-- <li><a href="index.html#Product"><span>Product</span></a></li> -->
-              <li><a href="index.html#Technologies"><span>Technology</span></a></li>
-              <li><a href="index.html#contact">Contact</a></li>
-              <a class="btn-getstarted d-xl-none"
-                style="text-align: center; display:flex; justify-content :center; color: white;"
-                href="career.html">Career</a>
-            </ul>
-            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-          </nav>
-    
-          <a class="btn-getstarted" style="text-align: center; color: white;" href="career.html">Career</a>
+            style="justify-content: space-between;">
+            <a href="index.html" class="logo d-flex align-items-center">
+                <img src="/assets/logo.jpg" alt="Deveraa" />
+            </a>
+
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="index.html#hero" class="active"><span>Home</span></a></li>
+                    <li><a href="index.html#about"><span>Company</span></a></li>
+                    <li><a href="index.html#Services"><span>Service</span></a></li>
+                    <!-- <li><a href="index.html#Product"><span>Product</span></a></li> -->
+                    <li><a href="index.html#Technologies"><span>Technology</span></a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <a class="btn-getstarted d-xl-none"
+                        style="text-align: center; display:flex; justify-content :center; color: white;"
+                        href="career.html">Career</a>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+
+            <a class="btn-getstarted" style="text-align: center; color: white;" href="career.html">Career</a>
         </div>
-      </header>
+    </header>
 
 
 
@@ -307,88 +307,79 @@
     </script>
 
 
-<!-- Include SweetAlert for notifications -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Include SweetAlert for notifications -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script>
-document.getElementById('contact-form').addEventListener('submit', function (e) {
-  e.preventDefault();
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function (e) {
+            e.preventDefault();
 
-  // Hide submit button and show loading button
-  const submitButton = document.querySelector('input[type="submit"]');
-  submitButton.value = "Sending...";
-  submitButton.disabled = true;
+            // Hide submit button and show loading button
+            const submitButton = document.querySelector('input[type="submit"]');
+            submitButton.value = "Sending...";
+            submitButton.disabled = true;
 
-  // Get form values
-  const fullName = document.querySelector('input[type="text"]').value;
-  const email = document.querySelector('input[type="email"]').value;
-  const contactNo = document.querySelectorAll('input[type="text"]')[1].value;
-  const applicationType = document.getElementById('deveraa-application-type').value;
-  const position = document.getElementById('deveraa-position').value;
-  const resumeFile = document.getElementById('deveraa-file-input').files[0];
+            // Get form values
+            const fullName = document.querySelector('input[type="text"]').value;
+            const email = document.querySelector('input[type="email"]').value;
+            const contactNo = document.querySelectorAll('input[type="text"]')[1].value;
+            const applicationType = document.getElementById('deveraa-application-type').value;
+            const position = document.getElementById('deveraa-position').value;
 
-  // Prepare the form data
-  const formData = new FormData();
-  formData.append('mailto', 'pundenishant@gmail.com');
-  formData.append('subject', `New ${applicationType} Application from ${fullName}`);
-  formData.append('body', `Full Name: ${fullName}\nEmail: ${email}\nContact No.: ${contactNo}\nApplication Type: ${applicationType}\nPosition: ${position}`);
-  formData.append('username', 'info@deveraa.com');
-  formData.append('password', 'itrjgsxdexwwkwhr');
-  formData.append('senderName', fullName);
-  formData.append('file', resumeFile);
+            // Construct the request payload as JSON
+            const payload = {
+                mailto: 'deveraapvt@gmail.com',
+                subject: `New ${applicationType} Application from ${fullName}`,
+                body: `Full Name: ${fullName}\nEmail: ${email}\nContact No.: ${contactNo}\nApplication Type: ${applicationType}\nPosition: ${position}`,
+                username: 'deveraapvt@gmail.com',
+                password: 'itrj gsxd exww kwhr', // Ensure this is correct
+                senderName: fullName
+            };
 
-  // Send the POST request to the API
-  fetch('https://mail.learnwithdevelopers.me/mail', {
-    method: 'POST',
-    body: formData
-  })
-    .then(response => {
-      if (response.ok) {
-        // Show success alert using SweetAlert
-        Swal.fire({
-          icon: 'success',
-          title: 'Thank you for your application!',
-          text: 'We will review your submission and get back to you soon.',
+            console.log("Sending payload:", payload);
+
+            // Send the POST request to the API
+            fetch('https://mail.learnwithdevelopers.me/mail', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.text(); // Handle plain text response
+                    } else {
+                        throw new Error('Application submission failed');
+                    }
+                })
+                .then(data => {
+                    console.log('Server response:', data);
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Thank you for your application!',
+                        text: "We have received your application and will review it soon.",
+                    });
+
+                    document.getElementById('contact-form').reset();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops!',
+                        text: 'Something went wrong. Please try again later.',
+                    });
+                })
+                .finally(() => {
+                    submitButton.value = "Send";
+                    submitButton.disabled = false;
+                });
+
         });
 
-        // Reset form fields
-        document.getElementById('contact-form').reset();
-      } else {
-        // Handle error
-        throw new Error('Application submission failed');
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops!',
-        text: 'Something went wrong. Please try again later.',
-      });
-    })
-    .finally(() => {
-      // Reset submit button
-      submitButton.value = "Send";
-      submitButton.disabled = false;
-    });
-});
-
-// Handle the file browse button
-document.getElementById('deveraa-browse-btn').addEventListener('click', () => {
-  document.getElementById('deveraa-file-input').click();
-});
-
-// Display the selected file name
-document.getElementById('deveraa-file-input').addEventListener('change', (event) => {
-  const fileNameDisplay = document.getElementById('deveraa-file-name');
-  const file = event.target.files[0];
-  if (file) {
-    fileNameDisplay.textContent = `Selected File: ${file.name}`;
-  } else {
-    fileNameDisplay.textContent = "";
-  }
-});
-</script>
+    </script>
 
 
 </body>
